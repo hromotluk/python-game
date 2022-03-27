@@ -56,11 +56,9 @@ class Company:
         
     def buy_new_property(self):
         if self.money>=10000:
-            self.capacity+=2000
-            self.w_capacity+=100
+            self.capacity+=500
+            self.w_capacity+=50
             self.money-=10000
-            print("clicked")
-        
         
     def working(self):
         self.worktime=True
@@ -80,42 +78,42 @@ class Company:
         
     def print_inventory(self):
         while True:
-            label=Label(root, borderwidth=8, text="current status: \n{}$ \n{}\\{} workers \n{}\\{} products".format(self.money, self.workers, self.w_capacity, self.stock, self.capacity),fg='white',bg='black')
-            label.grid(row=2, column=1)
+            label=Label(root, borderwidth=8, text="current status: \n{}$ \n{}\\{} workers \n{}\\{} products".format(self.money, self.workers, self.w_capacity, self.stock, self.capacity),fg='white',bg='black', bd=3, relief=SUNKEN)
+            label.grid(row=3, column=1, pady=10)
             time.sleep(0.5)
         
-cp=Company(1000, 5, 50, True, 3000, 200)
+cp=Company(1000, 5, 50, True, 2000, 100)
 
 root=Tk()
 root.title("Company game")
 #root.geometry('500x500+650+220')
 
-label=Label(root, text="Welcome",fg='orange', bg='black')
-label.grid(row=0,column=1)
+label=Label(root, text="Welcome",fg='orange', bg='black', bd=3, relief=SUNKEN)
+label.grid(row=0,column=0, columnspan=3, sticky=W+E)
 
-buy_l=Label(root, borderwidth=8, text="Buy\nTIER 1: +10 w and -100$\nTIER 2: +20 w and -200$\nTIER 3: +50 w and -500$", fg='orange', bg='black')
-buy_l.grid(row=0,column=0)
+buy_l=Label(root, borderwidth=8, text="Buy\nTIER 1: +10 workers and -100$\nTIER 2: +20 workers and -200$\nTIER 3: +50 workers and -500$", fg='orange', bg='black', bd=3, relief=SUNKEN)
+buy_l.grid(row=1,column=0, pady=5)
 buy_b0=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 1", command=cp.buy_t1, width=8) # buy button tier 1
-buy_b0.grid(row=1,column=0)
+buy_b0.grid(row=2,column=0)
 buy_b1=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 2", command=cp.buy_t2, width=8) # buy button tier 2
-buy_b1.grid(row=2,column=0)
+buy_b1.grid(row=3,column=0)
 buy_b2=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 3", command=cp.buy_t3, width=8) # buy button tier 3
-buy_b2.grid(row=3,column=0)
+buy_b2.grid(row=4,column=0)
 
-sell_l=Label(root, borderwidth=8, text="Sell\nTIER 1: -10 products and +100$\nTIER 2: -20 products and +200$\nTIER 3: -50 products and +500$", fg='orange', bg='black')
-sell_l.grid(row=0,column=2)
+sell_l=Label(root, borderwidth=8, text="Sell\nTIER 1: -10 products and +100$\nTIER 2: -20 products and +200$\nTIER 3: -50 products and +500$", fg='orange', bg='black', bd=3, relief=SUNKEN)
+sell_l.grid(row=1,column=2)
 sell_b0=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 1", command=cp.sell_t1, width=8) # sell buton tier 1
-sell_b0.grid(row=1,column=2)
+sell_b0.grid(row=2,column=2)
 sell_b1=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 2", command=cp.sell_t2, width=8) # sell button tier 2
-sell_b1.grid(row=2,column=2)
+sell_b1.grid(row=3,column=2)
 sell_b2=Button(root, borderwidth=8, fg='orange', bg='black', text="TIER 3", command=cp.sell_t3, width=8) # sell button tier 3
-sell_b2.grid(row=3,column=2)
+sell_b2.grid(row=4,column=2)
 
 exit_b=Button(root, text="EXIT", borderwidth=8, command=root.destroy, fg='orange', bg='black')
-exit_b.grid(row=4, column=1)
+exit_b.grid(row=5, column=1, pady=10)
 
 bnp=Button(root, borderwidth=8, fg='orange', bg='black', text="increase space", command=cp.buy_new_property, width=10)
-bnp.grid(row=3, column=1)
+bnp.grid(row=4, column=1)
 
 root.configure(bg='black')
 
